@@ -5,6 +5,8 @@ import { handleCsvToJson } from './commands/csvToJson.js';
 import { handleJsonToCsv } from './commands/jsonToCsv.js';
 import { handleHash } from './commands/hash.js';
 import { handleHashCompare } from './commands/hashCompare.js';
+import { handleEncrypt } from './commands/encrypt.js';
+import { handleDecrypt } from './commands/decrypt.js';
 
 export function startRepl(currentDir) {
     const rl = readline.createInterface({
@@ -33,16 +35,20 @@ export function startRepl(currentDir) {
             if (['cd', 'up', 'ls', 'pwd'].includes(command)) {
                 currentDir = await handleNavigation(command, args, currentDir);
 
-            } else if (command ==='count') {
+            } else if (command === 'count') {
                 await handleCount(args, currentDir);
-            } else if (command === 'csv-to-json') {  
-                await handleCsvToJson(args, currentDir); 
-            } else if (command === 'json-to-csv') {   
+            } else if (command === 'csv-to-json') {
+                await handleCsvToJson(args, currentDir);
+            } else if (command === 'json-to-csv') {
                 await handleJsonToCsv(args, currentDir);
-                } else if (command === 'hash') {   
+            } else if (command === 'hash') {
                 await handleHash(args, currentDir);
-            } else if (command === 'hash-compare') {   
+            } else if (command === 'hash-compare') {
                 await handleHashCompare(args, currentDir);
+            } else if (command === 'encrypt') {
+                await handleEncrypt(args, currentDir);
+            } else if (command === 'decrypt') {
+                await handleDecrypt(args, currentDir);
             } else {
                 console.log('Invalid input');
             }
