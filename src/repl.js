@@ -3,6 +3,8 @@ import { handleNavigation } from './navigation.js';
 import { handleCount } from './commands/count.js'
 import { handleCsvToJson } from './commands/csvToJson.js';
 import { handleJsonToCsv } from './commands/jsonToCsv.js';
+import { handleHash } from './commands/hash.js';
+import { handleHashCompare } from './commands/hashCompare.js';
 
 export function startRepl(currentDir) {
     const rl = readline.createInterface({
@@ -36,7 +38,11 @@ export function startRepl(currentDir) {
             } else if (command === 'csv-to-json') {  
                 await handleCsvToJson(args, currentDir); 
             } else if (command === 'json-to-csv') {   
-            await handleJsonToCsv(args, currentDir);
+                await handleJsonToCsv(args, currentDir);
+                } else if (command === 'hash') {   
+                await handleHash(args, currentDir);
+            } else if (command === 'hash-compare') {   
+                await handleHashCompare(args, currentDir);
             } else {
                 console.log('Invalid input');
             }
