@@ -1,0 +1,22 @@
+{
+  "name": "02-data-processing-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hannamuzychuk/02-data-processing-cli.git"
+  },
+  "keywords": [],
+  "author": "Hanna Muzychuk <hannamuzychuk@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hannamuzychuk/02-data-processing-cli/issues"
+  },
+  "homepage": "https://github.com/hannamuzychuk/02-data-processing-cli#readme"
+}
