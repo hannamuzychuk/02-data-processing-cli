@@ -7,6 +7,7 @@ import { handleHash } from './commands/hash.js';
 import { handleHashCompare } from './commands/hashCompare.js';
 import { handleEncrypt } from './commands/encrypt.js';
 import { handleDecrypt } from './commands/decrypt.js';
+import { handleLogStats } from './commands/logStats.js';
 
 export function startRepl(currentDir) {
     const rl = readline.createInterface({
@@ -49,6 +50,8 @@ export function startRepl(currentDir) {
                 await handleEncrypt(args, currentDir);
             } else if (command === 'decrypt') {
                 await handleDecrypt(args, currentDir);
+            } else if (command === 'log-stats') {
+                await handleLogStats(args, currentDir);
             } else {
                 console.log('Invalid input');
             }
