@@ -1,28 +1,30 @@
-import fs from 'node:fs';
+import fs from 'node:fs/promises';
 import path from 'node:path';
 
 export async function handleNavigation(command, args, currentDir) {
+   try {  
     switch (command) {
-        case 'cd':
+        case 'cd': {
             if (args.length !== 1) {
                 console.log('Invalid input');
                 return currentDir;
             }
             const newPath = path.resolve(currentDir, args[0]);
-            if (fs.existsSync(newPath) && fs.statSync(newPath).isDirectory()) {
+            const stat = await fs.stat(newPath);
+            if (stat.isDirectory()) {
                 return newPath;
             } else {
                 console.log('Operation failed');
                 return currentDir;
             }
-                    
-        case "up":
+        }     
+        case "up": {
             const parentDir = path.dirname(currentDir);
             return (parentDir !== currentDir ? parentDir : currentDir);
-                        
-        case 'ls':
-            try {
-                const entries = fs.readdirSync(currentDir, { withFileTypes: true });
+        }               
+        case 'ls': {
+           
+                const entries = await fs.readdir(currentDir, { withFileTypes: true });
                 const folders = [];
                 const files = [];
                 for (const entry of entries) {
@@ -41,13 +43,19 @@ export async function handleNavigation(command, args, currentDir) {
               for (const file of files) {
                     console.log(`${file} [file]`);
                 }
-                
-            } catch {
-                console.log('Operation failed');
+               return currentDir; 
             }
-            return currentDir;
-        case "pwd":
+            
+        case "pwd": {
             console.log(currentDir);
             return currentDir;
     }
+    }
+} catch {
+
+        console.log('Operation failed');
+        return currentDir;
+
+    }
+
 }

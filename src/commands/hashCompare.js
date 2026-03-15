@@ -23,14 +23,13 @@ function calculateHash(filePath, algorithm) {
 export async function handleHashCompare(args, currentDir) {
 
     const opts = parseArgs(args);
-    console.log(opts);
 
     if (!opts.input || !opts.hash) {
         console.log('Invalid input');
         return;
     }
 
-    const algorithm = opts.algorithm || 'sha256';
+    const algorithm = (opts.algorithm || 'sha256').toLowerCase();
     const supported = ['sha256', 'md5', 'sha512'];
 
     if (!supported.includes(algorithm)) {

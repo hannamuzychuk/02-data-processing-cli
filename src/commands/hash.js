@@ -36,7 +36,7 @@ export async function handleHash(args, currentDir) {
         const result = hash.digest('hex');
         console.log(`${algorithm}: ${result}`);
 
-        if (opts.save !== undefined) {
+        if (opts.save) {
 
                 const savePath = `${filePath}.${algorithm}`;
 
